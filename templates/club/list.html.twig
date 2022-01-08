@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1 style="text-align: center"> Liste de formations </h1>
+    <table border="1" style="width: max-content; display: block; margin: auto">
+        <thead>
+            <th> Ref </th>
+            <th> Titre </th>
+            <th>Description</th>
+            <th> Nombre de participant </th>
+            <th> Date début </th>
+            <th> Date Fin </th>
+            <th> Participer </th>
+        </thead>
+        <tbody>
+            {% for f in formations %}
+                <tr>
+                    <td> {{ f.ref }} </td>
+                    <td> {{ f.Titre | upper }} </td>
+                    <td> {{ f.Description }} </td>
+                    <td> {{ f.nb_participants }} </td>
+                    <td> {{ f.date_debut | date("Y/m/d") }} </td>
+                    <td> {{ f.date_fin }} </td>
+                    <td>
+                        {% if f.nb_participants == 0 %}
+                            <form action="/club/get/{{ f.Titre }}" method="post">
+                                <button type="submit">Participer</button>
+                            </form>
+                            <button onclick="window.location.href='/club/get/{{ f.Titre }}'"> Participer 2 </button>
+                            <a href="{{ path('getClubName', {'nom' : f.Titre}) }}">particper</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <p> Le nombre de formation est : <b> {{ formations | length }} </b> </p>
+
+    Les Formations Theorique sont :
+    <ul>
+        {% for f in formations %}
+            {% if f.Description == "formation theorique" %}
+                <li> {{ f.Titre | upper }} </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <p> Le titre de formation ayant le plus grand nombre de participants </p>
+    {% set maxValue = 0 %}
+    {% set Titre = "" %}
+    {% set sum = 0 %}
+    {% for f in formations %}
+        {% set sum = sum + f.nb_participants %}
+        {% if ( max(f.nb_participants, maxValue) > maxValue ) %}
+            {% set Titre = f.Titre %}
+        {% endif %}
+        {% set maxValue = max(f.nb_participants, maxValue) %}
+    {% endfor %}
+   <b> {{ Titre }} </b>
+    <br>
+
+    <p> Le nombre total des participants est : <b>{{ sum }}</b> </p>
+    <br>
+
+    <p>
+    Le tableau est :
+        {% if(formations is empty) %}
+            <b>Le tableau est vide</b>
+            {% else %}
+            <b> Le tableau n'est pas vide </b>
+        {% endif %}
+        <br>
+        {% if(formations is defined) %}
+            <b>Le tableau est definie</b>
+        {% else %}
+            <b> Le tableau n'est pas definie </b>
+        {% endif %}
+    </p>
+
+{% endblock %}

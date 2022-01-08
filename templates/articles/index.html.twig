@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title "Articles" %}
+{% block body %}
+<div class="jumbotron text-center">
+  <h1>Article Pages</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, distinctio
+    eaque et, excepturi id iste iusto magni minima molestiae non placeat porro
+    quaerat qui sequi tempore temporibus unde vel velit?
+  </p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ var_name }}</h1>
+      {% set pi = 3.14 %}
+      {% set pi = "test" %}
+      <p> Pi est : <b>{{ pi}}</b> </p>
+      {%  set foo = [3, { "titre": "description etc.." }] %}
+      <p> {{ foo[1].titre }} </p>
+
+      {% set variable = "1" %}
+      {% set variable2 = " ALINFO" %}
+      {% set variable3 = " 3" %}
+        <div>
+          <p> Concat : <b>  {{ variable ~ variable2 ~ variable3 }} </b> </p>
+        </div>
+
+
+      <p> Is Defined :
+        {% if variable4 is defined %}
+          {{ varriable4 }}
+        {% else %}
+          la variable n'est pas definie
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
