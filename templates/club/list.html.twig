@@ -28,7 +28,7 @@
                                 <button type="submit">Participer</button>
                             </form>
                             <button onclick="window.location.href='/club/get/{{ f.Titre }}'"> Participer 2 </button>
-                            <a href="{{ path('getClubName', {'nom' : f.Titre}) }}">particper</a>
+                            <a href="{{ path("getClubName", { "nom": f.Titre }) }}"> Participer </a>
                         {% endif %}
                     </td>
                 </tr>

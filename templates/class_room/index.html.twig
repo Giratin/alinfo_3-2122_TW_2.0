@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClassRoom Liste{% endblock %}
+
+{% block body %}
+    <a href="{{ path('createClassRoom') }}"> Créer un nouveau </a>
+    <h1 style="text-align: center; margin-top: 10px; margin-bottom: 20px"> Liste des classes </h1>
+    <table border="1" style="max-width: max-content; display: block; margin: auto">
+        <thead>
+            <th> id </th>
+            <th> nom </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </thead>
+        <tbody>
+            {% for classe in liste %}
+                <tr>
+                    <td> {{ classe.id }} </td>
+                    <td> {{ classe.Name }} </td>
+                    <td><a href="{{ path("updateClassRoom", { 'id' : classe.id }) }}">Update</a> </td>
+                    <td><a href="{{ path("deleteClassRoom", { 'id' : classe.id }) }}">Delete</a> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(class_form) }}
+
+        <div class="form-group mb-2">
+
+            {{ form_label(class_form.Name) }}
+            {{ form_widget(class_form.Name, { 'attr': { 'class' :  'custom_class', 'id' : 'custom_id' } }) }}
+            <div class="alert-danger">
+                {{ form_errors(class_form.Name) }}
+            </div>
+        </div>
+    {{ form_end(class_form) }}
+
+{% endblock %}
