@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for r in redoublants %}
+       <div>
+           Dans la classe <b> {{ r.classname  }} </b>, on a <b> {{ r.nbre }}</b> redoublant(s)
+       </div>
+    {% endfor %}
+
+{% endblock %}

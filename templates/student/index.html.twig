@@ -3,11 +3,17 @@
 {% block title %}Hello StudentController!{% endblock %}
 
 {% block body %}
+    <form method="get">
+        <label for="">NSC</label>
+        <input type="text" name="search" />
+        <input type="submit" value="search">
+    </form>
     <table style="width: max-content" border="1">
         <thead>
             <th> NSC </th>
             <th> Email </th>
             <th> Class </th>
+            <th> BirthDate </th>
             <th> Update </th>
             <th> Delete </th>
         </thead>
@@ -17,6 +23,7 @@
                     <td> {{ student.nsc}} </td>
                     <td> {{ student.email }} </td>
                     <td> {{ student.classroom.Name }} </td>
+                    <td> {{ student.birthDate | date('Y-m-d') }} </td>
                     <td> <a href="{{ path("updateStudent" , { 'id' : student.nsc }) }}"> Update </a> </td>
                     <td> <a href="{{ path("removeStudent" , { 'id' : student.nsc }) }}"> Delete </a> </td>
                 </tr>

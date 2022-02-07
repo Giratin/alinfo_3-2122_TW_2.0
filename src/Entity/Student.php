@@ -22,9 +22,52 @@ class Student
     private $email;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $birthDate;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $moyenne;
+
+    /**
      * @ORM\ManyToOne(targetEntity=ClassRoom::class, inversedBy="students")
      */
     private $classroom;
+
+    /**
+     * @return mixed
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param mixed $birthDate
+     */
+    public function setBirthDate($birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMoyenne()
+    {
+        return $this->moyenne;
+    }
+
+    /**
+     * @param mixed $moyenne
+     */
+    public function setMoyenne($moyenne): void
+    {
+        $this->moyenne = $moyenne;
+    }
+
 
     public function getNsc(): ?string
     {

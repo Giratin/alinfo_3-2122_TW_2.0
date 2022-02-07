@@ -19,6 +19,20 @@ class StudentRepository extends ServiceEntityRepository
         parent::__construct($registry, Student::class);
     }
 
+    public function getStudentsOrderedByEmail()
+    {
+        return $this->createQueryBuilder('e')->orderBy('e.email', 'ASC')->getQuery()->getResult();
+    }
+
+    public function searchStudents($value)
+    {
+        return $this->createQueryBuilder('e')
+                    ->where('e.nsc like :value')
+                    ->setParameter('value', '%'.$value.'%')
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Student[] Returns an array of Student objects
     //  */
